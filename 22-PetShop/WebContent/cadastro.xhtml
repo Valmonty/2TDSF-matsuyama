@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+	Cadastro de Pets
+	</ui:define>
+	<ui:define name="corpo">
+		<h:body>
+			<h:form>
+
+				<h:outputLabel value="Raça(*)" />
+				<br />
+				<h:inputText value="#{animalBean.raca}" required="true"
+					requiredMessage="Campo obrigatório" id="raca" maxlength="30" />
+				<h:message for="raca" />
+				<br />
+
+				<h:outputLabel value="Nome" />
+				<br />
+				<h:inputText value="#{animalBean.nome}" />
+				<h:message for="nome" />
+				<br />
+
+				<h:outputLabel value="Gênero(*)" />
+				<h:selectOneRadio value="#{animalBean.genero}" required="true"
+					requiredMessage="Campo obrigatório" id="genero">
+					<f:selectItem itemLabel="M" itemValue="Masculino" />
+					<f:selectItem itemLabel="F" itemValue="Feminino" />
+				</h:selectOneRadio>
+
+				<h:outputLabel value="Idade" />
+				<br />
+				<h:inputText value="#{animalBean.idade}" id="idade">
+					<f:validateLongRange minimum="0" maximum="200" />
+				</h:inputText>
+				<h:message for="idade" />
+				<br />
+
+				<h:outputLabel value="Peso(*)" />
+				<br />
+				<h:inputText value="#{animalBean.peso}" required="true"
+					requiredMessage="Campo obrigatório" id="peso">
+					<f:validateDoubleRange minimum="0.00" maximum="20000.00" />
+				</h:inputText>
+				<h:message for="peso" />
+				<br />
+
+				<h:outputLabel value="Porte(*)" />
+				<br />
+				<h:selectOneMenu value="#{animalBean.porte}" required="true"
+					requiredMessage="Campo obrigatório" id="porte">
+					<f:selectItem itemLabel="P" itemValue="P" />
+					<f:selectItem itemLabel="M" itemValue="M" />
+					<f:selectItem itemLabel="G" itemValue="G" />
+					<f:selectItem itemLabel="XG" itemValue="XG" />
+				</h:selectOneMenu>
+				<br />
+
+				<h:outputLabel value="RG - dono" />
+				<br />
+				<h:inputText value="#{animalBean.rg}">
+				</h:inputText>
+				<br />
+
+				<h:commandButton action="#{animalBean.enviar}" value="Enviar" />
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>
